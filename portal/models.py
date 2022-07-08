@@ -7,7 +7,7 @@ from django.db import models
 class Employee(models.Model):
     name = models.CharField(max_length=50)
     emp_id = models.CharField(max_length=30)
-    samples = models.ManyToManyField('Sample', through='Ownership', related_name='employees')
+    
 
 
 class Sample(models.Model):
@@ -15,6 +15,7 @@ class Sample(models.Model):
     model_code = models.CharField(max_length=30)
     subcategory = models.CharField(max_length=30)
     working_condition = models.BooleanField()
+    employee = models.ManyToManyField(Employee, through='Ownership', related_name='samples')
 
 
 class Ownership(models.Model):
